@@ -1,9 +1,7 @@
 
-body {
+.signup-Page {
     margin: 0;
     padding: 0;
-    /* background: url("../assets/cityscape.jpg") no-repeat center center/cover;
-    backdrop-filter: blur(5px); */
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -11,7 +9,7 @@ body {
     position: relative;
   }
   
-  body::before {
+  .signup-Page::before {
     content: "";
     position: absolute;
     top: 0;
@@ -21,13 +19,12 @@ body {
     backdrop-filter: blur(10px);
     z-index: -1;
   }
-  
-  .login-container {
+  .signup-container {
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(1px);
     padding: 30px;
     border-radius: 10px;
-    width: 350px;
+    width: 25vw;
     text-align: center;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
     display: flex;
@@ -50,13 +47,13 @@ body {
     }
   }
   
-  h2 {
+  .signup-container h2 {
     margin-bottom: 20px;
     color: black;
   }
   
-  input {
-    width: 350px;
+  .signup-container input {
+    width: 24vw;
     padding: 12px;
     margin: 10px 0;
     border: none;
@@ -68,12 +65,12 @@ body {
   }
   
   
-  input::placeholder {
+  .signup-container input::placeholder {
     color: rgba(255,255,255); 
   }
   
-  button {
-    width: 100%;
+  .signup-container button {
+    width: 24vw;
     padding: 12px;
     margin-top: 15px;
     background: #007bff;
@@ -85,25 +82,6 @@ body {
     text-align: center; 
   }
   
-  button:hover {
+  .signup-container button:hover {
     background: #007bff;
-  }
-  
-  .selectGender
-  {
-    /* color: rgba(255, 255, 255, 0.7);  */
-    width: 375px;
-    padding: 12px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 5px;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    font-size: 16px;
-    outline: none;
-  }
-  
-  input[name="startLocation"]::placeholder,input[name="endLocation"]::placeholder 
-  {
-      color: black;
   }

@@ -6,6 +6,7 @@ import "../Style/login.css";
 const Login = () => {
     const navigate = useNavigate();
     const [email,setEmail] = useState("");
+    const [password,setPassword] = useState("");
     // const [password,setPassword] = useState("");
 
     const handleSubmit = async (e) => {
@@ -28,7 +29,8 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
+    <div className="login-Page">
+      <div className="login-container">
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <input
@@ -39,7 +41,7 @@ const Login = () => {
           onChange={(e)=>setEmail(e.target.value)}
           required
         />
-        {/* <input
+        <input
           type="password"
           name="password"
           placeholder="Password"
@@ -47,9 +49,10 @@ const Login = () => {
           onChange={(e)=>{setPassword(e.target.value)}}
           minLength={8}
           required
-        /> */}
+        />
         <button type="submit" style={{backgroundColor: "#007bff"}}>Submit</button>
       </form>
+    </div>
     </div>
   );
 };

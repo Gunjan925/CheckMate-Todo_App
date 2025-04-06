@@ -8,6 +8,7 @@ const SignUp = () => {
     const [errorName,setErrorName] = useState("");   
     const [name,setName] = useState("");
     const [email,setEmail] = useState("");
+    const [password,setPassword] = useState("");
 
     const checkName = (e) =>
     {
@@ -40,7 +41,8 @@ const SignUp = () => {
     };
 
   return (
-    <div className="login-container">
+    <div className="signup-Page">
+      <div className="signup-container">
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <input
@@ -60,7 +62,7 @@ const SignUp = () => {
           onChange={(e)=>setEmail(e.target.value)}
           required
         />
-        {/* <input
+        <input
           type="password"
           name="password"
           placeholder="Password"
@@ -68,12 +70,13 @@ const SignUp = () => {
           onChange={(e)=>{setPassword(e.target.value)}}
           minLength={8}
           required
-        /> */}
+        />
         <button type="submit" style={{backgroundColor: "#007bff"}}>Submit</button>
       </form>
       <p>
         Already have an account? <Link to="/login">Login</Link>
       </p>
+    </div>
     </div>
   );
 };

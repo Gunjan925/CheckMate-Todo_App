@@ -1,5 +1,5 @@
 
-body {
+.login-Page {
     margin: 0;
     padding: 0;
     height: 100vh;
@@ -9,7 +9,7 @@ body {
     position: relative;
   }
   
-  body::before {
+  .login-Page::before {
     content: "";
     position: absolute;
     top: 0;
@@ -25,7 +25,7 @@ body {
     backdrop-filter: blur(1px);
     padding: 30px;
     border-radius: 10px;
-    width: 350px;
+    width: 25vw;
     text-align: center;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
     display: flex;
@@ -48,12 +48,12 @@ body {
     }
   }
   
-  h2 {
+  .login-container h2 {
     margin-bottom: 20px;
     color: black;
   }
   
-  input {
+  .login-container input {
     width: 350px;
     padding: 12px;
     margin: 10px 0;
@@ -66,11 +66,11 @@ body {
   }
   
   
-  input::placeholder {
+  .login-container input::placeholder {
     color: rgba(255,255,255); 
   }
   
-  button {
+  .login-container button {
     width: 100%;
     padding: 12px;
     margin-top: 15px;
@@ -83,25 +83,6 @@ body {
     text-align: center; 
   }
   
-  button:hover {
+  .login-container button:hover {
     background: #007bff;
-  }
-  
-  .selectGender
-  {
-    /* color: rgba(255, 255, 255, 0.7);  */
-    width: 375px;
-    padding: 12px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 5px;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    font-size: 16px;
-    outline: none;
-  }
-  
-  input[name="startLocation"]::placeholder,input[name="endLocation"]::placeholder 
-  {
-      color: black;
   }
