@@ -1,0 +1,37 @@
+.home-container {
+  text-align: center;
+  background-color: rgb(0, 0, 0);
+  padding: 10vh 5vw;
+    min-height: 69vh; /* if navbar is ~8vh */
+    overflow-y: hidden;
+
+}
+
+.brand {
+  color: #4a90e2;
+}
+
+.tagline {
+  font-size: 3.5vh;
+  color: #555;
+  margin-top: 10px;
+}
+
+.info-box {
+  margin-top: 40px;
+  background-color: white;
+  border-left: 5px solid #4a90e2;
+  padding: 20px;
+  width: 90%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.info-box p {
+  font-size: 1.1rem;
+  color: rgb(75, 75, 75);
+  margin-bottom: 15px;
+}

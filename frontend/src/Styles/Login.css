@@ -1,0 +1,125 @@
+/* Container Styles */
+.login-container {
+  background-color: black;
+  color: white;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Title Styling */
+.login-title {
+  font-size: 3.5vh;
+  margin-bottom: 30px;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+
+.brand {
+  color: #4a90e2;
+}
+
+/* Form Card */
+.login-form {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-shadow: 0 0 15px rgba(74, 144, 226, 0.4);
+}
+
+/* Input Fields */
+.login-form input {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+/* Password Field with Icon */
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding: 12px 40px 12px 12px; /* space for eye icon */
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+/* Eye Icon */
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: rgb(98, 98, 98);
+  font-size: 1.1rem;
+  user-select: none;
+  transition: color 0.3s ease;
+}
+
+/* Button Styling */
+.login-button {
+  background-color: #4a90e2;
+  color: white;
+  padding: 12px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #397cc8;
+}
+
+/* Redirect and Links */
+.signup-redirect {
+  margin-top: 15px;
+  color: #ccc;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.signup-link {
+  color: #4a90e2;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}
+
+.back-home {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.home-link {
+  color: #4a90e2;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.home-link:hover {
+  text-decoration: underline;
+}

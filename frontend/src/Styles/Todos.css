@@ -1,0 +1,184 @@
+.todos-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  background-color: black;
+  color: white;
+  min-height: 100vh;
+  padding: 40px 20px;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+.brand {
+  color: #4a90e2;
+}
+
+.form-section,
+.list-section {
+  flex: 1;
+  min-width: 80vw;
+  max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-section h2,
+.list-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.form-section input,
+.form-section textarea {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.form-section input[type="date"] {
+  color-scheme: dark;
+}
+
+.form-section button {
+  background-color: #4a90e2;
+  padding: 8px;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bolder;
+  transition: 0.3s;
+  font-size: 20px;
+}
+
+.form-section button:hover {
+  background-color: #397cc8;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.filter-buttons button {
+  padding: 6px 12px;
+  border: none;
+  background-color: #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.filter-buttons button:hover {
+  background-color: #bbb;
+  color: black;
+}
+
+button.red
+{
+    background-color: red;
+    color: white;
+}
+
+button.green
+{
+    background-color: green;
+    color: white;
+}
+
+.filter-buttons .active {
+  background-color: #4a90e2;
+  color: white;
+  font-weight: bold;
+}
+
+.todo-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(74, 144, 226, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: row;
+  word-wrap: break-word;
+  flex-wrap: wrap;
+}
+
+.todo-main h3 {
+  margin: 0 0 8px;
+}
+
+.todo-main p {
+  margin: 0 0 6px;
+  color: #ccc;
+}
+
+.deadline {
+  font-size: 0.9rem;
+  color: white;
+  font-weight: bolder;
+  min-width: 60%;
+  max-width: 60%;
+}
+
+.todo-actions {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  gap: 10px;
+}
+
+.todo-actions i {
+  cursor: pointer;
+  color: #ccc;
+  font-size: 1.1rem;
+  transition: color 0.2s;
+}
+
+.todo-actions i:hover {
+  color: white;
+}
+
+.completed
+{
+  background-color: #4CAF50;
+  border-left: 5px solid #e6fbe6;
+  color: white;
+}
+
+.urgent
+{
+  background-color: #af4c4c;
+  border-left: 5px solid #e6fbe6;
+  color: white;
+}
+
+.no-tasks {
+  color: #888;
+  font-style: italic;
+  margin-top: 20px;
+}
+
+.actions 
+{
+  min-width: 40%;
+  max-width: 40%;
+  display: flex;
+  gap: 15px;
+  align-items: flex-end;
+  justify-content: flex-end;
+  flex-wrap: wrap;  
+}
