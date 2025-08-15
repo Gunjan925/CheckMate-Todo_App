@@ -1,21 +1,28 @@
 import React, { useState } from 'react';
 import '../Styles/Signup.css';
 import { useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Signup = () => {
-  const [userName,setUserName] = useState("");
+  const [username,setUsername] = useState("");
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
-  const [showPassword,setShowPassword] = useState("");
+  const [showPassword,setShowPassword] = useState(false);
+  const [error,setError] = useState("");
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add form validation / API call here
-    console.log(userName,email,password);
-    alert("Account created successfully!");
-    navigate("/login");
+    try
+    {
+      await axios.post('http://localhost:5000/api/auth/signup', { username, email, password });
+      navigate('/',{state : {message : 'Signup successful! Please login.' }});
+    }
+    catch(err)
+    {
+      setError(err.response?.data?.message || 'Signup failed');
+    }
   };
 
   return (
@@ -26,8 +33,8 @@ const Signup = () => {
           type="text"
           name="username"
           placeholder="Username"
-          value={userName}
-          onChange={(e)=>setUserName(e.target.value)}
+          value={username}
+          onChange={(e)=>setUsername(e.target.value)}
           required
         />
         <input
@@ -45,6 +52,8 @@ const Signup = () => {
             placeholder="Create Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            minLength={8}
+            maxLength={12}
             required
           />
           <span
@@ -55,6 +64,7 @@ const Signup = () => {
           </span>
         </div>
         <button type="submit" className="signup-button">Sign Up</button>
+        {error && <p style={{ color: "red" }}>{error}</p>} 
         <div className="login-redirect">
             Already have an account? <Link to="/login" className="login-link">Login here</Link>
         </div>

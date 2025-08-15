@@ -1,0 +1,188 @@
+1. config folder : (Connection with the databases)
+    -  To handle configuration setups, like database connection.
+- db.js : 
+    - This file sets up a MySQL connection using mysql2 and exports a connection pool using promises. It reads credentials from the .env file for better security and flexibility
+
+
+
+
+(PROMISES : A Promise is an object that represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
+            Three States : pending , fulfilled , rejected)
+(WHY PROMISES : async/await , exception handling)
+
+
+
+
+2. controllers folder : (contains functions which are called from frontend to perform certain operations) (Controller should only handle user requests and responses.)
+    - Handle the actual logic for routes (business logic).
+    - Handle the logic of the app.
+    - Receive the request from the user (via routes), use the model to get or update data, and return a response.
+
+- authController.js : Handles user registration and login:
+        - Validates if user already exists
+        - Hashes passwords using bcryptjs
+        - Returns JWT token upon successful login
+
+- todoController.js : Handles operations like:
+        - Fetching all TODOs for a user
+        - Creating a new TODO
+
+
+
+
+
+3. middleware folder : (Authentication purposes)
+    -  Contains logic that runs before your routes (e.g., auth checks).
+
+- authMiddleware.js: Checks if the user is authenticated by verifying the JWT token.
+        - If valid, attaches the userId to req for later use in controllers.
+        - If invalid or absent, returns 401 Unauthorized.
+
+
+
+
+4. models folder : (Actual logic of mysql for performing CRUD operations) (Model should only deal with data.)
+    - Handle all SQL queries and database operations.
+    - Represent the data and database logic.
+    - Define how data is structured, stored, and interacted with.
+
+- userModel.js : 
+    - createUser: inserts a new user into users
+    - findUserByEmail : fetches user by email (used in login)
+
+- todoModel.js : 
+    - getTodosByUserId: gets all TODOs for a user by joining users_todos and todos
+    - addTodo: adds a new TODO and links it to the user in users_todos
+
+
+
+
+5. routes folder : 
+    - Define API endpoints and connect them to controller logic.
+
+- authRoutes.js : 
+        - /api/auth/register: For registering new users
+        - /api/auth/login: For logging in existing users
+
+- todoRoutes.js : 
+        - /api/todos:
+            - GET: Fetch todos for logged-in user
+            - POST: Create a new todo (requires JWT authentication)
+
+
+
+
+6. server.js : 
+    - The main entry point to start your Express server.
+    - Sets up middleware like cors() and express.json()
+    - Registers your API routes
+    - Starts the server on the specified port
+
+
+
+
+
+A connection pool is a set of pre-established database connections that your application can reuse instead of opening a new connection every time a user sends a request.
+
+Why is this useful?
+    - Opening a new connection to the database is time-consuming and resource-heavy.
+    - With pooling, connections are reused, which is faster and more efficient.
+
+
+
+
+
+| Without `.promise()`       | With `.promise()`         |
+| -------------------------- | ------------------------- |
+| Uses callbacks             | Uses `async/await`        |
+| Verbose and hard to manage | Clean, readable code      |
+| Harder error handling      | Simple `try/catch` blocks |
+
+Express : 
+    - `Express` is the web framework used to handle HTTP requests and responses in a Node.js server.
+
+cors : 
+    - middleware
+    - CORS (Cross-Origin Resource Sharing) is required to allow your frontend (e.g., React running on a different port or domain) to access the backend API without getting blocked by the browser's Same-Origin Policy.
+
+require('dotenv').config() : 
+    - Loads environment variables from a `.env` file into `process.env`.
+    - stores sensative data without hardcoding it and pushing it in on the github.
+
+const authRoutes = require('./routes/authRoutes'); and const todoRoutes = require('./routes/todoRoutes'); : 
+    - Imports route handlers for authentication (authRoutes) and todos (todoRoutes).
+    - Organizing routes into separate files keeps your app modular, maintainable, and clean.
+
+const app = express(); : 
+    - Creates an instance of the Express app.
+    - You use this `app` to define routes, middleware, and server behavior.
+
+app.use(cors()); : 
+    - Enables Cross-Origin Resource Sharing.
+    - Without this, your frontend might get blocked when trying to call APIs from a different origin (e.g., React frontend on localhost:3000 calling backend on localhost:5000).
+
+app.use(express.json()); : 
+    - Parses incoming JSON requests and makes the data available in `req.body`.
+    - Essential for handling POST/PUT requests where the client sends JSON data (e.g., login info, new todo item, etc.).
+
+app.use('/api/auth',authRoutes); and app.use('/api/todos',todoRoutes); : 
+    - Mounts all routes from authRoutes under the base path /api/auth.
+    - So any route defined in authRoutes (like /login, /register) will be accessed as /api/auth/login, /api/auth/register, etc.
+
+app.listen(PORT,()=>{
+    console.log(`Server running on port ${PORT}`);
+}); : 
+    - Starts the server and listens on the defined `PORT`.
+    - This is the entry point where your backend API starts serving requests.
+
+
+
+
+
+## 🔁 Summary of Why Each Part Is Needed:
+
+| **Part**                       | **Why It’s Needed**                                                                 |
+|-------------------------------|--------------------------------------------------------------------------------------|
+| `express`                     | To build the backend server                                                         |
+| `cors`                        | To allow frontend from other origins to talk to backend                            |
+| `dotenv`                      | To load secure configuration from `.env`                                           |
+| `authRoutes`, `todoRoutes`    | To organize routes separately for clean codebase                                   |
+| `express.json()`              | To handle incoming JSON data in POST requests                                      |
+| `app.use('/api/...')`         | To structure your API endpoints cleanly and logically                              |
+| `PORT = ...`                  | To support deployment environments with custom ports                               |
+| `app.listen(...)`             | To start the server and keep it running                                            |
+
+
+
+
+exports.createUser = async (username, email, password) => {
+  const [result] = await db.execute(
+    'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
+    [username, email, password]
+  );
+  return result.insertId; // returned to the controller as userId
+}; : 
+result (i.e., rows) is an object like
+{
+  fieldCount: 0,
+  affectedRows: 1,
+  insertId: 5, // = result.insertId
+  serverStatus: 2,
+  warningCount: 0,
+  message: '',
+  protocol41: true,
+  changedRows: 0
+}
+
+What happens after login?
+    - The user gets the token.
+    - On every future request (like "get my todos"), the token is sent along with it.
+    - The backend looks at the token to check who the user is and if they are allowed to access the requested data.
+
+Real-life example in your app:
+    - You log in to your todo app → ✅
+    - The backend gives you a token like: eyJhbGci...
+    - You save this token in your app.
+    - When you open the "My Tasks" page, your app sends this token to the backend.
+    - The backend says: “Oh, this token is valid. This is correct. Show the tasks.
+

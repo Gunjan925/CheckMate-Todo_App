@@ -1,21 +1,36 @@
 import React, { useState } from 'react';
 import '../Styles/Login.css';
 // import { useNavigate, Link } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useNavigate ,Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Login = () => {
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
   const [showPassword,setShowPassword] = useState("");
 
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add form validation / API call here
-    console.log(email,password);
-    alert("Logged in successfully!");
-    // navigate("/notes");
+    try{
+      const res = await axios.post("http://localhost:5000/api/auth/login", { email, password });
+      localStorage.setItem("token",res.data.token);
+      localStorage.setItem("user_name",res.data.user_name);
+      alert("Logged in Successfully");
+      navigate("/todos");
+    }catch(err){
+      // handle backend error
+      if(err.response && err.response.data)
+      {
+        alert(err.response.data.message || "login failed");
+      }
+      else
+      {
+        console.log(err);
+        alert("Something went wrong. Please try again.");
+      }
+    }
   };
 
   return (
@@ -34,7 +49,7 @@ const Login = () => {
           <input
             type={showPassword ? "text" : "password"}
             name="password"
-            placeholder="Create Password"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
