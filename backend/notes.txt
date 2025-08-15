@@ -186,3 +186,12 @@ Real-life example in your app:
     - When you open the "My Tasks" page, your app sends this token to the backend.
     - The backend says: “Oh, this token is valid. This is correct. Show the tasks.
 
+
+
+
+
+## Working of the authentication : (working of jwt authorization)
+- During signup the data is send from frontend to backend and then stored in the database successfully.
+- While login if the user exists and password matches then a unique token for the particular user is created and send to the frontend , from frontend it is stored in the localstorage.
+- It is stored in the local storage so that even if we come back to home page without log out , we don't have to login again until token's expiration time , since it will be retreived from the localstorage.
+- On the todos page also after verifying the token (from the frontend localstorage) the notes of the particular user will be retreived.
