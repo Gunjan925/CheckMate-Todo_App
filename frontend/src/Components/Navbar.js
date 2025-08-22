@@ -23,8 +23,9 @@ const Navbar = ({isLogin}) => {
     );
       localStorage.removeItem("token");
       localStorage.removeItem("user_name");
-      alert("Logged out successfully!");
-      navigate("/");
+      // alert("Logged out successfully!");
+      // navigate("/");
+      navigate('/',{state : {message : 'Successfully logged out !!' }});
     } catch (error) {
       alert("Logout failed:", error);
     }

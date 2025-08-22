@@ -182,3 +182,57 @@ button.green
   justify-content: flex-end;
   flex-wrap: wrap;  
 }
+
+.edit-form {
+  flex: 1;
+  min-width: 80vw;
+  max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.edit-form input,
+.edit-form textarea,
+.edit-form input[type="date"] {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  outline: none;
+  color-scheme: dark;
+}
+
+.edit-form textarea {
+  resize: none;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.edit-form button {
+  padding: 5px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  white-space: nowrap; 
+  min-width: fit-content;
+}
+
+.edit-form button.save {
+  background-color: #4caf50;
+  color: white;
+}
+
+.edit-form button.cancel {
+  background-color: #e0e0e0;
+  color: #333;
+}
